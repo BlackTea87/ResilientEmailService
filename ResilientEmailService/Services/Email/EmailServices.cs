@@ -3,20 +3,19 @@ using ResilientEmailService.Services.CircuitBreakers;
 
 namespace ResilientEmailService.Services.Email
 {
-    // Services/Email/EmailService.cs
-    public class EmailService
+    public class EmailServices
     {
         private readonly IEmailProvider[] _providers;
         private readonly Dictionary<string, EmailStatus> _statusTracker = new();
         private readonly Dictionary<string, CircuitBreaker> _circuitBreakers = new();
-        private readonly ILogger<EmailService> _logger;
+        private readonly ILogger<EmailServices> _logger;
         private readonly int _maxRetries;
         private readonly TimeSpan _rateLimitDelay;
         private DateTime _lastSendTime = DateTime.MinValue;
 
-        public EmailService(
+        public EmailServices(
             IEnumerable<IEmailProvider> providers,
-            ILogger<EmailService> logger,
+            ILogger<EmailServices> logger,
             int maxRetries = 3,
             TimeSpan? rateLimitDelay = null)
         {
@@ -130,7 +129,10 @@ namespace ResilientEmailService.Services.Email
             return result ?? new EmailResult
             {
                 Success = false,
-                Message = "All providers failed",
+                Provider = null,
+                Message = _circuitBreakers.Any(cb => cb.Value.IsCircuitOpen())
+         ? "Circuit open for all providers"
+         : "All providers failed",
                 Timestamp = DateTime.UtcNow
             };
         }
