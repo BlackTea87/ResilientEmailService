@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 // Add email services
 builder.Services.AddSingleton<IEmailProvider, MockEmailProvider1>();
 builder.Services.AddSingleton<IEmailProvider, MockEmailProvider2>();
-builder.Services.AddSingleton<EmailService>();
+builder.Services.AddSingleton<EmailServices>();
 
 // Add queue service
 builder.Services.AddSingleton<EmailQueueService>();
