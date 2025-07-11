@@ -7,12 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Add email services
+
 //builder.Services.AddSingleton<IEmailProvider, MockEmailProvider1>();
 //builder.Services.AddSingleton<IEmailProvider, MockEmailProvider2>();
 
 builder.Services.AddSingleton<IEmailProvider, SmtpEmailProvider>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings")); 
 builder.Services.AddSingleton<EmailService>();
+=======
+//builder.Services.AddSingleton<IEmailProvider, MockEmailProvider1>();
+//builder.Services.AddSingleton<IEmailProvider, MockEmailProvider2>();
+//builder.Services.AddSingleton<EmailServices>();
+
 
 // Add queue service
 builder.Services.AddSingleton<EmailQueueService>();
