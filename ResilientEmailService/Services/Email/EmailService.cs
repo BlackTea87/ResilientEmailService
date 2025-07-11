@@ -3,7 +3,6 @@ using ResilientEmailService.Services.CircuitBreakers;
 
 namespace ResilientEmailService.Services.Email
 {
-    // Services/Email/EmailService.cs
     public class EmailService
     {
         private readonly IEmailProvider[] _providers;
