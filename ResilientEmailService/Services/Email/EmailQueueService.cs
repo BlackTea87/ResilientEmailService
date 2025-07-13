@@ -7,10 +7,10 @@ namespace ResilientEmailService.Services.Email
     {
         private readonly Queue<EmailRequest> _queue = new();
         private readonly SemaphoreSlim _signal = new SemaphoreSlim(0);
-        private readonly EmailService _emailService;
+        private readonly EmailServices _emailService;
         private readonly ILogger<EmailQueueService> _logger;
 
-        public EmailQueueService(EmailService emailService, ILogger<EmailQueueService> logger)
+        public EmailQueueService(EmailServices emailService, ILogger<EmailQueueService> logger)
         {
             _emailService = emailService;
             _logger = logger;

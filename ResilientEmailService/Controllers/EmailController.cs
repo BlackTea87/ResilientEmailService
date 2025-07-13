@@ -8,11 +8,11 @@ namespace ResilientEmailService.Controllers
     [Route("api/[controller]")]
     public class EmailController : ControllerBase
     {
-        private readonly EmailService _emailService;
+        private readonly EmailServices _emailService;
         private readonly IServiceProvider _serviceProvider;
 
         // Renamed field from '_emailQueueService' to '_serviceProvider' to match the actual usage
-        public EmailController(EmailService emailService, IServiceProvider serviceProvider)
+        public EmailController(EmailServices emailService, IServiceProvider serviceProvider)
         {
             _emailService = emailService;
             _serviceProvider = serviceProvider;

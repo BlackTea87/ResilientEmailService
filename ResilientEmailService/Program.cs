@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddSingleton<IEmailProvider, SmtpEmailProvider>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings")); 
-builder.Services.AddSingleton<EmailService>();
+builder.Services.AddSingleton<EmailServices>();
 
 // Add queue service
 builder.Services.AddSingleton<EmailQueueService>();
